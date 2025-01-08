@@ -1,0 +1,16 @@
+public class LaptopBookingHandler {
+    
+    public static void sendEmailNotification(List<Laptop_Bookings__c> bookings) {
+        // Logic to send email notifications for each booking
+        for (Laptop_Bookings__c booking : bookings) {
+            // Your email sending logic here
+            Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+            mail.setToAddresses(new String[] {'recipient@example.com'});  // Replace with dynamic email addresses if needed
+            mail.setSubject('Laptop Booking Notification');
+            mail.setPlainTextBody('Your laptop booking with ID ' + booking.Id + ' has been successfully processed.');
+            
+            // Send email
+            Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+        }
+    }
+}
